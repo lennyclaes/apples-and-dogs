@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=DeWereld
+comment0.text=\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\n\ \n\ @author\ Lenny\ Claes\n\ @version\ 0.0.1\n
+comment1.params=
+comment1.target=DeWereld()
+comment2.params=
+comment2.target=void\ addDog()
+comment2.text=\n\ Adds\ a\ dog\ to\ the\ list\ and\ the\ world;\n\ @param\ \ \ dog\ \ \ \ The\ dog\ to\ be\ added\ to\ the\ list\n
+comment3.params=tree
+comment3.target=void\ addApple(Tree)
+comment3.text=\n\ Adds\ a\ apple\ to\ the\ list\ and\ the\ world;\n\ @param\ \ \ tree\ \ \ \ The\ tree\ where\ the\ apple\ comes\ from\n
+comment4.params=xMinOffs\ xMaxOffs\ yMinOffs\ yMaxOffs
+comment4.target=int[]\ getRandomCoords(int,\ int,\ int,\ int)
+comment5.params=
+comment5.target=void\ initWorld()
+comment6.params=x\ y
+comment6.target=boolean\ isWater(int,\ int)
+numComments=7
