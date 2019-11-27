@@ -15,9 +15,12 @@ public class DeWereld extends World
      * 
      */
     private GreenfootImage map;
+    
+    private int timeCounter = 0;
 
     private int initDogs = 2;
     private int initTrees = 1;
+    private int applesGiven = 0;    
 
     private River river;
     private ArrayList<Dog> dogs = new ArrayList();
@@ -31,6 +34,15 @@ public class DeWereld extends World
         setBackground(map);
 
         initWorld();
+    }
+    
+    public void act() {
+        timeCounter++;
+        if (timeCounter % 50 == 0) {
+            if (gameFinished()) {
+                Greenfoot.stop();
+            }
+        }
     }
 
     /**
@@ -51,7 +63,22 @@ public class DeWereld extends World
     public void addApple(Tree tree) {
         Apple apple = new Apple();
         apples.add(apple);
-        addObject(apple, (tree.getX() + greenfoot.getRandomNumber(40) - 20), (tree.getY() + greenfoot.getRandomNumber(40) - 20));
+        addObject(apple, (tree.getX() + Greenfoot.getRandomNumber(200) - 100), (tree.getY() + 100 - Greenfoot.getRandomNumber(50)));
+    }
+    
+    private boolean gameFinished() {
+        boolean finished = false;
+        int applesEaten = 0;
+        
+        for(Dog dog : dogs) {
+            applesEaten += dog.getEaten();
+        }
+        
+        if(applesEaten == applesGiven) {
+            finished = true;
+        }
+        
+        return finished;
     }
     
     private int[] getRandomCoords(int xMinOffs, int xMaxOffs, int yMinOffs, int yMaxOffs) {
@@ -87,16 +114,12 @@ public class DeWereld extends World
             addObject(d, coords[0] - 63, coords[1]);
         }
         for(int i = 0; i < initTrees; i++) {
-            Tree t = new Tree();
+            int amountApples = Greenfoot.getRandomNumber(11) + 5;
+            Tree t = new Tree(amountApples);
+            applesGiven = amountApples;
             trees.add(t);
             int[] coords = getRandomCoords(150, 150, 100, 100);
             addObject(t, coords[0] - 63, coords[1]);
         }
     }
-
-    public boolean isWater(int x, int y) {
-        Color col = map.getColorAt(x, y);
-        return col.getBlue() > (col.getRed() * 2);
-    }
-
 }
